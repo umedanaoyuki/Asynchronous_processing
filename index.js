@@ -1,46 +1,22 @@
-// function sleep(ms) {
-//   //const startTime = new Date();
-//   // while (new Date() - startTime < ms );
-
-//   setTimeout(function () {
-//     alert("sleep関数を完了しました。");
-//   }, ms);
-
-//   alert("sleep関数が完了しました");
-// }
-
-// // sleep(3000);
-
-// const btn = document.querySelector("button");
-// function clickHandler() {
-//   alert("ボタンがクリックされました。");
-// }
-// btn.addEventListener("click", clickHandler);
-
-// let val = 0;
-
-// setTimeout(() => {
-//   val = 1;
-//   console.log(val);
-// }, 0);
-
-// console.log(val);
-
-val = -1;
-
-function timer(callback) {
+function delay() {
   setTimeout(function () {
-    val = Math.floor(Math.random() * 11);
-    callback(val);
+    console.log("1秒たちました");
+    setTimeout(function () {
+      console.log("さらに1秒たちました");
+    }, 1000);
   }, 1000);
 }
 
-// timer();
+// function sayHello(message) {
+//   console.log(message);
+// }
 
-function operations(val) {
-  console.log(val);
-}
+// function bye(message) {
+//   alert(message);
+// }
 
-timer(operations);
+// delay(sayHello, "こんにちは", 1000);
 
-console.log("こちらは先に実行される");
+// delay(bye, "さようなら", 2000);
+
+delay();
