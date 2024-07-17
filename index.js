@@ -17,11 +17,30 @@
 // }
 // btn.addEventListener("click", clickHandler);
 
-let val = 0;
+// let val = 0;
 
-setTimeout(() => {
-  val = 1;
+// setTimeout(() => {
+//   val = 1;
+//   console.log(val);
+// }, 0);
+
+// console.log(val);
+
+val = -1;
+
+function timer(callback) {
+  setTimeout(function () {
+    val = Math.floor(Math.random() * 11);
+    callback(val);
+  }, 1000);
+}
+
+// timer();
+
+function operations(val) {
   console.log(val);
-}, 0);
+}
 
-console.log(val);
+timer(operations);
+
+console.log("こちらは先に実行される");
