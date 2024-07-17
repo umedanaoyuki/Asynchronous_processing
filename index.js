@@ -1,58 +1,37 @@
-// function delay() {
-//   setTimeout(function () {
-//     console.log("1秒たちました");
-//     setTimeout(function () {
-//       console.log("さらに1秒たちました");
-//     }, 1000);
-//   }, 1000);
-// }
+function promiseFactory(count) {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      count++;
 
-// function sayHello(message) {
-//   console.log(message);
-// }
+      console.log(
+        `${count}回目のコールです。時刻:[${new Date().toTimeString()}]`
+      );
 
-// function bye(message) {
-//   alert(message);
-// }
+      if (count === 3) {
+        reject(count);
+      } else {
+        resolve(count);
+      }
+    }, 1000);
+  });
+}
 
-// delay(sayHello, "こんにちは", 1000);
-
-// delay(bye, "さようなら", 2000);
-
-// delay();
-
-let timeInstance = new Promise((resolve, reject) => {
-  setTimeout(() => {
-    const time = new Date();
-    const seconds = time.getSeconds();
-
-    console.log(seconds);
-
-    // 偶数
-    if (seconds % 2 === 0) {
-      resolve(seconds);
-    } else {
-      // 奇数
-      reject(seconds);
-    }
-  }, 1000);
-});
-
-timeInstance = timeInstance
-  .then((number) => {
-    console.log(`${number}:成功`);
+promiseFactory(0)
+  .then((count) => {
+    return promiseFactory(count);
   })
-  .catch((number) => {
-    console.log(`${number}:失敗`);
+  .then((count) => {
+    return promiseFactory(count);
+  })
+  .then((count) => {
+    return promiseFactory(count);
+  })
+  .then((count) => {
+    return promiseFactory(count);
+  })
+  .catch((errorCount) => {
+    console.error(`エラーに飛びました。現在のカウントは${errorCount}です。`);
   })
   .finally(() => {
-    console.log("処理を終了します");
+    console.log("処理を終了します。");
   });
-
-// timeInstance = timeInstance.catch((number) => {
-//   console.log(`${number}:失敗`);
-// });
-
-// timeInstance = timeInstance.finally(() => {
-//   console.log("処理を終了します");
-// });
