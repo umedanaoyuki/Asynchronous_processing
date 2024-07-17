@@ -1,25 +1,14 @@
 function promiseFactory(count) {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
-      count++;
-
-      console.log(
-        `${count}回目のコールです。時刻:[${new Date().toTimeString()}]`
-      );
-
-      if (count === 3) {
-        reject(count);
-      } else {
-        resolve(count);
-      }
+      console.log(count);
+      count = count + 2;
+      resolve(count);
     }, 1000);
   });
 }
 
 promiseFactory(0)
-  .then((count) => {
-    return promiseFactory(count);
-  })
   .then((count) => {
     return promiseFactory(count);
   })
