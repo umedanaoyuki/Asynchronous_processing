@@ -1,26 +1,15 @@
-function promiseFactory(count) {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      console.log(count);
-      count = count + 2;
-      resolve(count);
-    }, 1000);
-  });
-}
+// import "./sample.json";
 
-promiseFactory(0)
-  .then((count) => {
-    return promiseFactory(count);
-  })
-  .then((count) => {
-    return promiseFactory(count);
-  })
-  .then((count) => {
-    return promiseFactory(count);
-  })
-  .catch((errorCount) => {
-    console.error(`エラーに飛びました。現在のカウントは${errorCount}です。`);
-  })
-  .finally(() => {
-    console.log("処理を終了します。");
-  });
+console.log("実行");
+
+const func = async () => {
+  const response = await fetch("sample.json");
+  const data = await response.json();
+
+  for (const { key, value } of data) {
+    console.log(key + " " + value);
+  }
+  console.log("完了");
+};
+
+func();
